@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 
-#define SIZE 20
+#define SIZE 3
 
 template<typename T> class Stack{
 
@@ -22,7 +22,7 @@ template<typename T> class Stack{
     {
       if(TOS == SIZE - 1) 
         {
-            std::cerr << "Stack is full. Insertion is not possible\n";
+            std::cout<<"Stack Overflow!!"<<std::endl;
         }
       else{
             TOS++;
@@ -35,7 +35,8 @@ template<typename T> class Stack{
     {
         if(TOS == -1)
         {
-            throw std::underflow_error("Stack is empty. Deletion not possible.");
+            std::cout <<"Stack Underflow!!"<<std::endl;
+            return T{};
         }
         else{
             TOS--;
@@ -62,7 +63,8 @@ template<typename T> class Stack{
     {
         if(TOS == -1)
         {
-            throw std::underflow_error("Stack is empty.");
+            std::cout<<"Stack underflow!!"<<std::endl;
+            return T{};
         }
         else{
             return array[TOS];
