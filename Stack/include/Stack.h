@@ -1,5 +1,10 @@
-#pragma once
+#ifndef  DSA_CUSTOM_STACK_H
+#define DSA_CUSTOM_STACK_H
+
 #include <iostream>
+
+namespace DSA{
+
 
 template<typename T>
 class Stack {
@@ -29,7 +34,7 @@ public:
 
     T pop() {
         if (isEmpty()) {
-            std::cout << "Stack Underflow!!" << std::endl;
+            std::cout << "Stack Underflow!! Pop" << std::endl;
             return T{};          // safer default than -1 for generic T
         }
         Node* temp = TOS;
@@ -42,7 +47,7 @@ public:
 
     T peek() {
         if (isEmpty()) {
-            std::cout << "Stack Underflow!!" << std::endl;
+            std::cout << "Stack Underflow!! Peek" << std::endl;
             return T{};
         }
         return TOS->data;
@@ -65,3 +70,5 @@ public:
     bool isEmpty() { return TOS == nullptr; }
     bool isFull()  { return false; }   // linked list never overflows
 };
+}
+#endif

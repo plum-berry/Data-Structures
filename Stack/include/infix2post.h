@@ -1,7 +1,7 @@
-#include "include/DataStructure.h"
-#include <iostream>
-#include<cctype>
-using namespace std;
+#ifndef DSA_INFIX2POST_H
+#define DSA_INFIX2POST_H
+
+#include "Stack.h"
 
 int precedence(char op)
 {
@@ -9,12 +9,12 @@ int precedence(char op)
     if(op == '+' || op == '-'){return 1;}
     return 0;
 }
-int main()
+namespace DSA{
+
+
+void infix2postfix(char* buffer,char* output)
 {
-    char buffer[20];
-    char output[20];
-    DSA::Stack<char> stack;
-    cin.getline(buffer,20);
+    Stack<char> stack;
     int i=0,j=0;
     char c;
     while((c = buffer[i])!='\0')
@@ -45,14 +45,13 @@ int main()
             output[j++] = c;
         }
         i++;
-        stack.display();
     }
     
     while(!stack.isEmpty())
     {
         output[j++] = stack.pop();
     }
-    output[j] = '\0';
-    cout << output<<endl;
-    return 0;
+    output[j] = '\0';   
 }
+}
+#endif
