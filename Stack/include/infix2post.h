@@ -2,6 +2,7 @@
 #define DSA_INFIX2POST_H
 
 #include "Stack.h"
+#include<cctype>
 
 int precedence(char op)
 {
@@ -33,16 +34,20 @@ void infix2postfix(char* buffer,char* output)
         }
         else if(c == '+' || c == '-' || c == '*' || c == '/')
         {
-            if((!stack.isEmpty() && precedence(stack.peek()))>=precedence(c))
+            if(!stack.isEmpty() && precedence(stack.peek())>=precedence(c))
             {
                 output[j++] = stack.pop();
                 stack.push(c);
             }else{
                 stack.push(c);
             }
+            output[j++] = ' ';
         }
         else {
             output[j++] = c;
+
+            if(!std::isdigit(buffer[i+1]))
+                output[j++] = ' ';
         }
         i++;
     }

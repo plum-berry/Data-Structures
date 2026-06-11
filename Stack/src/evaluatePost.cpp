@@ -1,5 +1,5 @@
-#include "evaluatePost.h"
-#include "Stack.h"
+#include "../include/evaluatePost.h"
+#include "../include/Stack.h"
 #include <cctype>
 
 namespace DSA{
@@ -41,8 +41,14 @@ namespace DSA{
                 }
             }else if(std::isdigit(c))
             {
-              temp1 = c - 48;  
+                temp1 = c - '0';
+                while(std::isdigit(buffer[i+1]))
+                {
+                    i++;
+                   temp1 =  temp1*10 + (buffer[i] - '0');
+                }
                 stack.push(temp1);
+
             }
             i++;
         }

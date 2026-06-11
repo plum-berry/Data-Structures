@@ -1,4 +1,4 @@
-#include "include/DataStructure.h"
+#include<DataStructure.h>
 #include<iostream>
 using namespace std;
 
