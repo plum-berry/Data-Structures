@@ -11,6 +11,4 @@ int main()
     int result = DSA::evaluatePost(output);
     cout<<result<<endl;
     return 0;
-
-
 }

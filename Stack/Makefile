@@ -1,18 +1,35 @@
-cc = g++
-IN = -I./include
+CC      = g++
+IN      = -I./include
+LFLAGS  = -L./lib -ldsalib
 
+# collect all .cpp files in src/
+SRCS    = $(wildcard src/*.cpp)
+OBJS    = $(SRCS:src/%.cpp=%.o)
 
-main: main.o evaluatePost.o
-	$(cc) $(IN) main.o evaluatePost.o -o main
-main.o: main.cpp
-	$(cc) $(IN) -c main.cpp 
-evaluatePost.o: src/evaluatePost.cpp
-	$(cc) $(IN) -c src/evaluatePost.cpp
+# ── default target ──────────────────────────────
+all: lib/libdsalib.a main.exe
 
+# ── build static library ─────────────────────────
+lib/libdsalib.a: $(OBJS)
+	ar rcs $@ $^
 
-test: 
-	$(cc) $(IN) test.cpp src/evaluatePost.cpp -o test
+# ── compile each src/*.cpp to a .o ───────────────
+%.o: src/%.cpp
+	$(CC) $(IN) -c $< -o $@
 
-.PHONY: clean
+# ── link final executable ─────────────────────────
+main.exe: main.cpp lib/libdsalib.a
+	$(CC) $(IN) main.cpp $(LFLAGS) -o $@
+
+# ── test build ───────────────────────────────────
+test.exe: test.cpp lib/libdsalib.a
+	$(CC) $(IN) test.cpp $(LFLAGS) -o $@
+
+# ── cleanup ──────────────────────────────────────
+.PHONY: all clean test
+
 clean:
-	del main main.o evaluatePost.o 
+	del *.o lib\libdsalib.a main.exe test.exe
+
+
+
