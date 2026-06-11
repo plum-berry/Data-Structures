@@ -6,4 +6,5 @@
 #include "infix2prefix.h"
 #include "stringReverse.h"
 #include "parenthesisMatch.h"
+#include "evaluatePost.h"
 #endif
