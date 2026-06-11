@@ -7,10 +7,10 @@ int main()
     char input[50];
     //char output[50];
     cin.getline(input,50);
-    
-    //DSA::infix2postfix(input,output) ;
-    DSA::strRev(input);
-    cout << input << endl;
+    if(DSA::parenthesisMatch(input))
+        cout<<"valid"<<endl;
+    else
+        cout<<"invalid"<<endl;
 
     return 0;
 
