@@ -3,8 +3,6 @@
 
 void swapbrackets(char* input);
 namespace DSA{
-    void infix2postfix(char* input,char* output);
+    void infix2prefix(char* input,char* output);
 }
-
-    
 #endif

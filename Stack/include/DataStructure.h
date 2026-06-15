@@ -7,4 +7,6 @@
 #include "stringReverse.h"
 #include "parenthesisMatch.h"
 #include "evaluatePost.h"
+#include "evaluateInfix.h"
+
 #endif

@@ -28,5 +28,4 @@ int main()
     DSA::infix2postfix(input,output);
     cout<< output <<endl;
     */
-    return 0;
 }
