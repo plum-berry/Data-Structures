@@ -27,6 +27,8 @@ bool parenthesisMatch(char* buffer)
         }
         i++;
     }
+    if(!stack.isEmpty())
+        status = false;
 
     return status; 
 }

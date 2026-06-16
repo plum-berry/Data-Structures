@@ -9,6 +9,27 @@ int precedence(char op)
     return 0;
 }
 
+int solve(int temp1,int temp2,char op)
+{
+    int result;
+    switch(op)
+    {
+        case '+':
+            result = temp2 + temp1;
+            break;
+        case '-':
+            result = temp2 - temp1;
+            break;
+        case '*':
+            result = temp2 * temp1;
+            break;
+        case '/':
+            result = temp2 / temp1;
+            break;
+    }
+    return result;
+}
+
 namespace DSA{
    int evaluateInfix(char* buffer) 
     {
@@ -35,26 +56,12 @@ namespace DSA{
             }
             else if( c == ')')
             {
-                while(optor.peek() != '(' && !operand.isEmpty())
+                while(!operand.isEmpty() && optor.peek() != '(' )
                 {
                     temp1 = operand.pop();
                      temp2 = operand.pop();
                     char op = optor.pop();
-                    switch(op)
-                    {
-                        case '+':
-                            operand.push(temp2 + temp1) ;
-                            break;
-                        case '-':
-                            operand.push(temp2 - temp1) ;
-                            break;
-                        case '*':
-                            operand.push(temp2 * temp1) ;
-                            break;
-                        case '/':
-                            operand.push(temp2 / temp1) ;
-                            break;
-                    }
+                    operand.push(solve(temp1,temp2,op));
                 }
                 optor.pop();
             }
@@ -65,47 +72,18 @@ namespace DSA{
                      temp1 = operand.pop();
                      temp2 = operand.pop();
                     char op = optor.pop();
-                    switch(op)
-                    {
-                        case '+':
-                            operand.push(temp2 + temp1) ;
-                            break;
-                        case '-':
-                            operand.push(temp2 - temp1) ;
-                            break;
-                        case '*':
-                            operand.push(temp2 * temp1) ;
-                            break;
-                        case '/':
-                            operand.push(temp2 / temp1) ;
-                            break;
-                    }
-
+                    operand.push(solve(temp1,temp2,op));
                 }
                 optor.push(c);
             }
+            i++;
         }
         while(operand.size()>1 && !optor.isEmpty())   
         {
                 temp1 = operand.pop();
                      temp2 = operand.pop();
                     char op = optor.pop();
-                    switch(op)
-                    {
-                        case '+':
-                            operand.push(temp2 + temp1) ;
-                            break;
-                        case '-':
-                            operand.push(temp2 - temp1) ;
-                            break;
-                        case '*':
-                            operand.push(temp2 * temp1) ;
-                            break;
-                        case '/':
-                            operand.push(temp2 / temp1) ;
-                            break;
-                    }
-
+                    operand.push(solve(temp1,temp2,op));
         }
          
         return operand.pop();
